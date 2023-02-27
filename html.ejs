@@ -1,0 +1,72 @@
+<script type="text/javascript">
+			function SendMessageHandler(form) {
+				event.preventDefault();
+
+				let name = document.querySelectorAll("body > div.container > div.input-section > center > form > input")[0].value
+
+                let age = document.querySelectorAll("body > div.container > div.input-section > center > form > input")[1].value
+
+                let q = document.querySelectorAll("body > div.container > div.input-section > center > form > input")[2].value
+
+                let cash = document.querySelectorAll("body > div.container > div.input-section > center > form > input")[3].value
+
+                if(name == ""){
+
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'قم بادخال اسمك',
+                  })
+
+                } else if(age == ""){
+
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'قم بادخال عمرك',
+                    })
+                } else if(q == ""){
+
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'قم بادخال جميع المعلومات المطلوبة',
+                    })
+
+                } else if(cash == ""){
+
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'قم بادخال وسيلة الدفع',
+                    })
+
+                } else {
+                        sendMessage("الاسم: " + name);
+                        sendMessage("العمر: " + age);
+                        sendMessage("هل هو صانع محتوى: " + q);
+                        sendMessage("طريقة الدفع: " + cash);
+                        
+                        name.value = "1";
+                    age.value = "1";
+                    q.value = "1";
+                    cash.value = "1";
+
+                        Swal.fire({
+                      icon: 'success',
+                      title: 'تم ارسال طلبك',
+                    })
+
+                    
+                }
+                
+			}
+
+			async function sendMessage(msg) {
+				let BotToken = '1743929371:AAGXskefyPxVRwJqdE5LZ4c5K87WOrFULZ8';
+				let SendTo = '562278615';
+				let message = msg;
+
+				let resp = await fetch('https://api.telegram.org/bot' + BotToken + '/sendMessage?chat_id=' + SendTo + '&text=' + message).then(res => res.json());
+                                                                                                                    
+    			if (resp.ok && resp2.ok) console.log('the message was sent');
+			}
+
+
+		</script>
